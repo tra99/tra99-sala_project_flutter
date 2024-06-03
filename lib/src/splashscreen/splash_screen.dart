@@ -1,0 +1,37 @@
+import 'dart:async';
+
+import 'package:flutter/material.dart';
+import 'package:flutter_project/src/components/start_screen.dart';
+import 'package:flutter_project/src/views/home_screen.dart';
+import 'package:flutter_project/src/views/language_screen.dart';
+
+class MySplashScreen extends StatefulWidget {
+  const MySplashScreen({super.key});
+
+  @override
+  State<MySplashScreen> createState() => _MySplashScreenState();
+}
+
+class _MySplashScreenState extends State<MySplashScreen> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Timer(
+      const Duration(seconds: 3),(){
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>const ChooseLanguageScreen()));
+      }
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(
+      backgroundColor: FontStyleCustom.mainColorScreen,
+      body: Center(
+        child: Image(image: AssetImage("assets/images/Aura_logo.png"),width: 200,height: 200,),
+      ),
+    );
+  }
+}
