@@ -4,6 +4,7 @@ import 'package:flutter_project/src/views/home_screen.dart';
 import 'package:flutter_project/src/views/language_screen.dart';
 import 'package:flutter_project/src/views/start_screen.dart';
 
+import 'src/authentication/login_screen.dart';
 import 'src/authentication/register.dart';
 import 'src/test/date_picker.dart';
 
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: RegisterScreen()
+      home: LoginScreen()
     );
   }
 }
