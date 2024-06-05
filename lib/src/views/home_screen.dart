@@ -11,7 +11,8 @@ class MyHomeScreen extends StatefulWidget {
 
 class _MyHomeScreenState extends State<MyHomeScreen> with SingleTickerProviderStateMixin {
   late TabController _tabController;
-  bool _isFavorited = false;
+  List<bool> _isFavoritedList = List<bool>.generate(4, (index) => false);
+  List<String> _productNames = ['3CE Hazy Lip', 'Moisturizer', 'Sun Cream', 'Blush']; // Different product names
 
   @override
   void initState() {
@@ -30,10 +31,9 @@ class _MyHomeScreenState extends State<MyHomeScreen> with SingleTickerProviderSt
     return Scaffold(
       appBar: AppBar(
         backgroundColor: FontStyleCustom.mainColorScreen,
-        // title: Text('My Home Screen'),  // Added a title
         title: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Image.asset("assets/images/Adelen.png",width: 70,),
+          child: Image.asset("assets/images/Adelen.png", width: 70),
         ),
         actions: [
           Padding(
@@ -54,7 +54,7 @@ class _MyHomeScreenState extends State<MyHomeScreen> with SingleTickerProviderSt
       body: Column(
         children: [
           ClipRRect(
-            borderRadius: const BorderRadius.only(topLeft: Radius.circular(20),topRight: Radius.circular(20)),
+            borderRadius: const BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               child: TextField(
@@ -75,7 +75,7 @@ class _MyHomeScreenState extends State<MyHomeScreen> with SingleTickerProviderSt
             controller: _tabController,
             labelColor: Colors.pinkAccent,
             indicator: const UnderlineTabIndicator(
-              borderSide: BorderSide.none, 
+              borderSide: BorderSide.none,
             ),
             tabs: const [
               Tab(text: 'Popular'),
@@ -93,7 +93,7 @@ class _MyHomeScreenState extends State<MyHomeScreen> with SingleTickerProviderSt
                 crossAxisSpacing: 16,
                 mainAxisSpacing: 16,
               ),
-              itemCount: 4,
+              itemCount: _productNames.length,
               itemBuilder: (context, index) {
                 return Card(
                   shape: RoundedRectangleBorder(
@@ -106,39 +106,34 @@ class _MyHomeScreenState extends State<MyHomeScreen> with SingleTickerProviderSt
                       Expanded(
                         child: Image.asset(
                           'assets/images/p${index + 1}.png',
-                          // fit: BoxFit.cover,
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 8,bottom: 4),
+                        padding: const EdgeInsets.only(left: 10, right: 5, bottom: 4),
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const Text('Product Name', style: TextStyle(fontWeight: FontWeight.bold)),
+                                Text(_productNames[index], style: const TextStyle(fontWeight: FontWeight.bold)),
                                 Text('${(index + 1) * 10} \$', style: const TextStyle(color: Colors.grey)),
                               ],
                             ),
-                            Align(
-                              alignment: Alignment.bottomRight,
-                              child: IconButton(
-                                icon: Icon(
-                                  _isFavorited ? Icons.favorite : Icons.favorite_border,
-                                  color: _isFavorited ? Colors.red : Colors.black, 
-                                ),
-                                onPressed: () {
-                                  setState(() {
-                                    _isFavorited = !_isFavorited; 
-                                  });
-                              }
-                            )
+                            IconButton(
+                              icon: Icon(
+                                _isFavoritedList[index] ? Icons.favorite : Icons.favorite_border,
+                                color: _isFavoritedList[index] ? Colors.red : Colors.black,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  _isFavoritedList[index] = !_isFavoritedList[index];
+                                });
+                              },
                             )
                           ],
                         ),
                       ),
-                      
                     ],
                   ),
                 );

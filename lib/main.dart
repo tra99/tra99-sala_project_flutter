@@ -6,6 +6,7 @@ import 'package:flutter_project/src/views/start_screen.dart';
 
 import 'src/authentication/login_screen.dart';
 import 'src/authentication/register.dart';
+import 'src/test/background_image.dart';
 import 'src/test/date_picker.dart';
 
 void main() {
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LoginScreen()
+      home: MySplashScreen()
     );
   }
 }

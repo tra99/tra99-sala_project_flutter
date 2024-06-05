@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_project/src/authentication/login_screen.dart';
 import 'package:flutter_project/src/components/button.dart';
 import 'package:flutter_project/src/components/start_screen.dart';
 
@@ -150,7 +151,7 @@ class _RegisterScreenState extends State<RegisterScreen> with RestorationMixin {
                     child: Column(
                       children: [
                         const Text("Date of birth"),
-                        SizedBox(height: 14,),
+                        const SizedBox(height: 14,),
                         TextField(
                           onTap: () {
                             _restorableDatePickerRouteFuture.present();
@@ -262,8 +263,10 @@ class _RegisterScreenState extends State<RegisterScreen> with RestorationMixin {
                   ],
                 ),
               ),
-              SizedBox(height: 28,),
-              CustomButton(text: "Create Account", onPressed: () {})
+              const SizedBox(height: 28,),
+              CustomButton(text: "Create Account", onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>const LoginScreen()));
+              })
             ],
           ),
         ),

@@ -1,9 +1,7 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_project/src/components/start_screen.dart';
-import 'package:flutter_project/src/views/home_screen.dart';
-import 'package:flutter_project/src/views/language_screen.dart';
+import '../views/start_screen.dart';
 
 class MySplashScreen extends StatefulWidget {
   const MySplashScreen({super.key});
@@ -20,7 +18,7 @@ class _MySplashScreenState extends State<MySplashScreen> {
     super.initState();
     Timer(
       const Duration(seconds: 3),(){
-        Navigator.push(context, MaterialPageRoute(builder: (context)=>const ChooseLanguageScreen()));
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>const StartScreen()));
       }
     );
   }
