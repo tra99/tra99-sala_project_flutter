@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_project/src/addToCard/add_to_card.dart';
 import 'package:flutter_project/src/splashscreen/splash_screen.dart';
 import 'package:flutter_project/src/views/home_screen.dart';
 import 'package:flutter_project/src/views/language_screen.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MySplashScreen()
+      home: AddToCardScreen()
     );
   }
 }
