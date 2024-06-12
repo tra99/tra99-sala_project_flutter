@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_project/src/addToCard/add_to_card.dart';
 import 'package:flutter_project/src/components/button.dart';
 import 'package:flutter_project/src/components/start_screen.dart';
 
@@ -82,46 +83,51 @@ class _MyHomeScreenState extends State<MyHomeScreen> with SingleTickerProviderSt
                 ),
                 itemCount: _productNames.length,
                 itemBuilder: (context, index) {
-                  return Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    elevation: 4,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          child: Image.asset(
-                            'assets/images/p${index + 1}.png',
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>AddToCardScreen()));
+                    },
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      elevation: 4,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            child: Image.asset(
+                              'assets/images/p${index + 1}.png',
+                            ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10, right: 5, bottom: 4),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(_productNames[index], style: const TextStyle(fontWeight: FontWeight.bold)),
-                                  Text('${(index + 1) * 10} \$', style: const TextStyle(color: Colors.grey)),
-                                ],
-                              ),
-                              IconButton(
-                                icon: Icon(
-                                  _isFavoritedList[index] ? Icons.favorite : Icons.favorite_border,
-                                  color: _isFavoritedList[index] ? Colors.red : Colors.black,
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10, right: 5, bottom: 4),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(_productNames[index], style: const TextStyle(fontWeight: FontWeight.bold)),
+                                    Text('${(index + 1) * 10} \$', style: const TextStyle(color: Colors.grey)),
+                                  ],
                                 ),
-                                onPressed: () {
-                                  setState(() {
-                                    _isFavoritedList[index] = !_isFavoritedList[index];
-                                  });
-                                },
-                              )
-                            ],
+                                IconButton(
+                                  icon: Icon(
+                                    _isFavoritedList[index] ? Icons.favorite : Icons.favorite_border,
+                                    color: _isFavoritedList[index] ? Colors.red : Colors.black,
+                                  ),
+                                  onPressed: () {
+                                    setState(() {
+                                      _isFavoritedList[index] = !_isFavoritedList[index];
+                                    });
+                                  },
+                                )
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   );
                 },
@@ -161,7 +167,11 @@ class _MyHomeScreenState extends State<MyHomeScreen> with SingleTickerProviderSt
       case 4:
         return Center(child: Text('Profile Screen')); 
       default:
-        return Center(child: Text('Home Screen'));
+        return Column(
+          children: [
+            
+          ],
+        );
     }
   }
 
