@@ -9,6 +9,7 @@ import 'src/authentication/login_screen.dart';
 import 'src/authentication/register.dart';
 import 'src/test/background_image.dart';
 import 'src/test/date_picker.dart';
+import 'src/components/product_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: AddToCardScreen()
+      home: MyHomeScreen()
     );
   }
 }
