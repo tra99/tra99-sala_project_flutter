@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_project/src/addToCard/add_to_card.dart';
 import 'package:flutter_project/src/components/button.dart';
 import 'package:flutter_project/src/components/start_screen.dart';
+import 'package:flutter_project/src/views/home_screen.dart';
 
 class PaymentScreen extends StatefulWidget {
   const PaymentScreen({super.key});
@@ -161,7 +162,9 @@ class _PaymentScreenState extends State<PaymentScreen> {
                       Text("\$35.00", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                     ],
                   ),
-                  CustomButton(text: "Pay", onPressed: () {}),
+                  CustomButton(text: "Pay", onPressed: () {
+                    _dialogBuilder(context);
+                  }),
                 ],
               ),
             ),
@@ -170,4 +173,91 @@ class _PaymentScreenState extends State<PaymentScreen> {
       ),
     );
   }
+
+  Future<void> _dialogBuilder(BuildContext context) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(20.0)),
+          ),
+          contentPadding: const EdgeInsets.all(20.0),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.green.withOpacity(0.2),
+                  shape: BoxShape.circle,
+                ),
+                child: const Padding(
+                  padding: EdgeInsets.all(15.0),
+                  child: Icon(
+                    Icons.check_circle,
+                    color: Colors.green,
+                    size: 60.0,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 20.0),
+              const Text(
+                'Payment Success!',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20.0,
+                ),
+              ),
+              const SizedBox(height: 10.0),
+              const Divider(),
+              const SizedBox(height: 10.0),
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Total',
+                    style: TextStyle(
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    'IDR 1,000,000',
+                    style: TextStyle(
+                      fontSize: 16.0,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 10.0),
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Date',
+                    style: TextStyle(
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    '12-12-2024',
+                    style: TextStyle(
+                      fontSize: 16.0,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20,),
+              CustomButton(text: "Done", onPressed: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>const MyHomeScreen()));
+              })
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+
 }
